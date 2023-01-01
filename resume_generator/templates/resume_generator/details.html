@@ -1,0 +1,44 @@
+<form action="{% url 'resume_generator:preview' %}" method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend><h1> Enter below details for {{ header_models.name }} : </h1></legend>
+
+    <div class="workxp"> <h2> Work Experience: </h2>
+      <label for="company_name"> Company Name: </label><br />
+      <input type="text" id="company_name" name="company_name" /><br />
+
+      <label for="position"> Position: </label><br />
+      <input type="text" id="position" name="position" /><br />
+
+      <label for="time_period"> Time Period you worked there: </label><br />
+      <input type="text" id="time_period" name="time_period" /><br />
+
+      <label for="responsibilites"> Your responsibilites there: </label><br />
+      <input type="text" id="responsibilites" name="responsibilites" /><br />
+    </div>
+    <br />
+    <div class="projects"><h2> Projects: </h2>
+      <label for="project_title"> Project title: </label><br />
+      <input type="text" id="project_title" name="project_title" /><br />
+      
+      <label for="project_description"> Projects description: </label><br />
+      <input type="text" id="project_description" name="project_description" /><br />
+    </div>
+    <br />
+    <div class="achievements"><h2> Achievements: </h2>
+      <label for="achievement_title"> Achievement title : </label><br />
+      <input type="text" id="achievement_title" name="achievement_title" /><br />
+
+      <label for="achievement_description"> Achievement description : </label><br />
+      <input type="text" id="achievement_description" name="achievement_description" /><br />
+    </div>
+    <br />
+    <div class="skills"><h2> Skills: </h2>
+      <label for="skill"> Skills : </label><br />
+      <input type="text" id="skill" name="skill" /><br />
+    </div>
+    <br />
+    <div class="buttons"><input type="submit" value="Make my resume!" /><br /></div>
+  </fieldset>
+  </fieldset>
+</form>
