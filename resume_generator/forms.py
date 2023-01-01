@@ -45,4 +45,4 @@ class Body(forms.Form):
     # pub_date = forms.DateTimeField('date published')
 
     def __str__(self):
-        return self.work_experience, self.projects, self.achievements, self.skills
+        return self.company_name
