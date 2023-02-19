@@ -25,39 +25,46 @@ def index(request):
 
 def user_creation(request):
 
-    # header_models = get_object_or_404(Header_models, pk=header_id)
-
     if request.method == 'POST':
-        form = Header(request.POST)
-
+        form = HeaderForm(request.POST)
+        print(form.is_valid())
         if form.is_valid():
-            name = form.cleaned_data['name']
-            mobile = form.cleaned_data['mobile']
-            email = form.cleaned_data['email']
-            description = form.cleaned_data['description']
-            print(name, description, mobile, email)
+            # name = form.cleaned_data['name']
+            # mobile = form.cleaned_data['mobile']
+            # email = form.cleaned_data['email']
+            # description = form.cleaned_data['description']
+            # print(name, description, mobile, email)
 
-            form = Header_models(name=name, mobile=mobile,
-                                 email=email, description=description,
-                                 pub_date=timezone.now())
+            # form = Header(name=name, mobile=mobile,
+            #               email=email, description=description,
+            #               pub_date=timezone.now())
             form.save()
+            print(type(form))
 
-            # return HttpResponseRedirect(reverse('resume_generator:details'))
-            return render(request, 'resume_generator/details.html',)
+    # header_models = get_object_or_404(Header_models, pk=header_id)
+        # print(get_object_or_404(Header, pk=form.getKey()))
+        # header_id = form.getId
+        # context = {'header_id': header_id}
+
+        return render(request, 'resume_generator/index.html', {'form': form})
+
+    # return render(request, 'resume_generator/details.html',)
     else:
-        form = Header()
+        form = HeaderForm()
     return HttpResponse("Your data didnt get save in db.")
 
 
 def details(request, header_id):
 
-    header_models = get_object_or_404(Header_models, pk=header_id)
+    header_models = get_object_or_404(Header, pk=header_id)
     print(header_models)
     print("Details is running dont worry. If you didnt see this message, need to look code.")
 
+    print(request.method)
+
     if request.method == 'POST':
         form = Body(request.POST)
-
+        print(form.is_valid())
         if form.is_valid():
             company_name = form.cleaned_data['company_name']
             position = form.cleaned_data['position']
@@ -76,12 +83,12 @@ def details(request, header_id):
                   project_title, project_description, achievement_title, achievement_description,
                   skills)
 
-            form = Body_models(header_models_id=header_models.id, company_name=company_name, position=position,
-                               time_period=time_period, responsibilites=responsibilites,
-                               project_title=project_title, project_description=project_description,
-                               achievement_title=achievement_title, achievement_description=achievement_description,
-                               skills=skills,
-                               pub_date=timezone.now())
+            form = Body(header_models_id=header_models.id, company_name=company_name, position=position,
+                        time_period=time_period, responsibilites=responsibilites,
+                        project_title=project_title, project_description=project_description,
+                        achievement_title=achievement_title, achievement_description=achievement_description,
+                        skills=skills,
+                        pub_date=timezone.now())
             form.save()
 
             return HttpResponseRedirect(reverse('resume_generator:preview', args=(header_models,)))

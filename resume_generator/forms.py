@@ -1,19 +1,24 @@
 
 
 from django import forms
+from .models import Header, Body
 
 
-class Header(forms.Form):
-    name = forms.CharField(label='Name', max_length=50)
-    mobile = forms.IntegerField()
-    email = forms.EmailField(label='Email ID', max_length=20)
-    description = forms.CharField(label='Description', max_length=100)
-    # pub_date = forms.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.name, self.mobile, self.email, self.description
+class HeaderForm(forms.ModelForm):
+    class Meta:
+        model = Header
+        fields = ['name', 'mobile', 'email', 'description', 'pub_date']
 
 
+class BodyForm(forms.ModelForm):
+    class Meta:
+        model = Body
+        fields = ['company_name', 'position', 'time_period', 'responsibilites', 'project_title',
+                  'project_description', 'achievement_title', 'achievement_description', 'skills', 'pub_date']
+
+
+# -----------------------------------------
+'''
 class Body(forms.Form):
 
     # class work_experience(forms.Form):
@@ -46,3 +51,4 @@ class Body(forms.Form):
 
     def __str__(self):
         return self.company_name
+'''

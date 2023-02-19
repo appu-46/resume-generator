@@ -5,7 +5,7 @@ from .models import *
 # Create your models here.
 
 
-class Header_models(models.Model):
+class Header(models.Model):
     name = models.CharField(max_length=50)
     mobile = models.IntegerField()
     email = models.EmailField(max_length=20)
@@ -16,8 +16,8 @@ class Header_models(models.Model):
         return self.name
 
 
-class Body_models(models.Model):
-    header_models = models.ForeignKey(Header_models, on_delete=models.CASCADE)
+class Body(models.Model):
+    header_models = models.ForeignKey(Header, on_delete=models.CASCADE)
 
     # class work_experience(models.Model):
     # no_of_companies_worked_in = models.IntegerField()
@@ -37,7 +37,7 @@ class Body_models(models.Model):
     # class skills(models.Model):
     skills = models.CharField(max_length=15)
     pub_date = models.DateTimeField()
-    #pub_date = models.DateTimeField('date published')
+    # pub_date = models.DateTimeField('date published')
 
     def __str__(self):
-        return self.company_name
+        return self.header_models

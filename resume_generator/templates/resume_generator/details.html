@@ -1,7 +1,7 @@
 <form action="{% url 'resume_generator:preview' %}" method="post">
   {% csrf_token %}
   <fieldset>
-    <legend><h1> Enter below details for {{ header_models.name }} : </h1></legend>
+    <legend><h1> Enter below details for {{ header_id.name }} : </h1></legend>
 
     <div class="workxp"> <h2> Work Experience: </h2>
       <label for="company_name"> Company Name: </label><br />

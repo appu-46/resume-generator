@@ -7,5 +7,5 @@ from .forms import *
 
 
 # Register your models here.
-admin.site.register(Header_models)
-admin.site.register(Body_models)
+admin.site.register(Header)
+admin.site.register(Body)
